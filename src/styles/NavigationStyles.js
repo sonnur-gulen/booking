@@ -7,10 +7,10 @@ const NavigationStyles={
       
     },
     hover: {
-        backgroundColor: 'primary.light',  // Background color on hover
-        borderBottom: '2px solid',  // Optional: Add a border for hover effect
-        borderColor: 'primary.dark',  // Border color on hover
-        transition: 'background-color 0.3s ease', // Smooth transition
+        backgroundColor: 'primary.light',  
+        borderBottom: '2px solid', 
+        borderColor: 'primary.dark',  
+        transition: 'background-color 0.3s ease', 
       }
 }
  export default NavigationStyles

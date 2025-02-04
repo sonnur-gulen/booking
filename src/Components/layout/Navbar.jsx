@@ -38,7 +38,7 @@ const Navbar = ({ onMenuClick }) => {
 
   const handleProfile = () => {
     handleClose();
-    // navigate('/profile');
+   
   };
 
   return (

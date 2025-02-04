@@ -1,4 +1,4 @@
-// src/App.jsx
+
 import React from "react";
 import { 
   BrowserRouter as Router, 
@@ -10,12 +10,13 @@ import { Bounce, ToastContainer } from "react-toastify";
 import DashboardPage from "./pages/DashboardPage";
 import ReservationsListPage from "./pages/ReservationsListPage";
 import Layout from "./Components/layout/Layout";
-import LoginPage from "./Pages/LoginPage";
+import LoginPage from "./pages/LoginPage";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import { AuthProvider } from "./contexts/AuthContext";
 
 
 function App() {
+  
   return (
     <AuthProvider>
       <Router>

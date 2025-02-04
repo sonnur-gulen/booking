@@ -7,7 +7,7 @@ const loginStyles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '100%' // Ensure it's taking up the full width
+    width: '100%' 
   },
   box: {
     display: 'flex',
@@ -18,7 +18,7 @@ const loginStyles = {
     borderRadius: 2,
     boxShadow: 3,
     width: '100%',
-    maxWidth: '400px' // Optional: set max width for the form
+    maxWidth: '400px' 
   },
   form: {
     mt: 1,
