@@ -49,7 +49,10 @@ const Navbar = ({ onMenuClick }) => {
           edge="start"
           color="inherit"
           aria-label="menu"
-          sx={{ mr: 2 }}
+          sx={{ 
+            transform: 'scale(1.5)',  
+            marginLeft: '10px'        
+          }}
           onClick={onMenuClick}
         >
           <MenuIcon />
@@ -67,6 +70,11 @@ const Navbar = ({ onMenuClick }) => {
             aria-haspopup="true"
             onClick={handleMenu}
             color="inherit"
+            sx={{ 
+              transform: 'scale(1.5)',  
+              marginLeft: '10px'        
+            }}
+          
           >
             <AccountCircleIcon />
           </IconButton>
@@ -84,6 +92,20 @@ const Navbar = ({ onMenuClick }) => {
             }}
             open={Boolean(anchorEl)}
             onClose={handleClose}
+            sx={{
+              '& .MuiPaper-root': {  
+                minWidth: '200px',    
+                mt: 1.5,             
+              },
+              '& .MuiMenuItem-root': {  
+                padding: '12px 24px',   
+                fontSize: '16px',       
+              },
+              '& .MuiSvgIcon-root': {   
+                fontSize: '24px',       
+                marginRight: '12px'     
+              }
+            }}
           >
             <MenuItem onClick={handleProfile}>
               <PersonIcon sx={{ mr: 1 }} />

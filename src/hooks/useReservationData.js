@@ -4,28 +4,11 @@ import { getLineColor } from '../utils/chartConfig';
 
 const LOCAL_STORAGE_KEY = "bookingData";
 
-const fetchBookingIds = async () => {
-  const response = await fetch("/api/booking");
-  if (!response.ok) throw new Error('Network response was not ok');
-  return response.json();
-};
-
-const fetchBookingDetails = async (id) => {
-  try {
-    const response = await fetch(`/api/booking/${id}`);
-    if (!response.ok) throw new Error(`Booking ${id} fetch failed`);
-    return response.json();
-  } catch (error) {
-    return null;
-  }
-};
-
 const useReservationData = () => {
   const [lineChartData, setLineChartData] = useState(null);
   const [pieChartData, setPieChartData] = useState(null);
   const [isLoadingDetails, setIsLoadingDetails] = useState(false);
 
-  
   useEffect(() => {
     const storedData = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (storedData) {
@@ -51,7 +34,6 @@ const useReservationData = () => {
       cacheTime: 30 * 60 * 1000,
     }
   );
-
   useEffect(() => {
     const processData = async () => {
       if (!bookingIds?.length || lineChartData || pieChartData) return;
@@ -70,7 +52,7 @@ const useReservationData = () => {
         }
 
         if (!allDetails.length) {
-          console.warn('No valid booking details found');
+          console.warn('Geçerli rezervasyon bulunamadı');
           return;
         }
 
@@ -138,7 +120,7 @@ const useReservationData = () => {
         }));
 
       } catch (error) {
-        console.error("Error processing data:", error);
+        console.error("Veri İşleme Hatası:", error);
       } finally {
         setIsLoadingDetails(false);
       }

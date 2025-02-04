@@ -7,7 +7,7 @@ const DashboardPage = () => {
   return (
     <Container maxWidth="xl"> 
       <Box sx={{ py: 3 }}>
-        <Typography variant="h4" component="h2" sx={{ mb: 4 }}>
+        <Typography variant="h3<" component="h2" sx={{ mb: 4 }}>
           Check-in İstatistikleri
         </Typography>
         <ReservationCharts />

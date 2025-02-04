@@ -11,6 +11,7 @@ const NavigationStyles={
         borderBottom: '2px solid', 
         borderColor: 'primary.dark',  
         transition: 'background-color 0.3s ease', 
-      }
+      },
+      
 }
  export default NavigationStyles

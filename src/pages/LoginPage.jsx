@@ -1,6 +1,6 @@
 // src/pages/LoginPage.jsx
 import React, { useState } from 'react';
-import { Container, Box } from '@mui/material';
+import { Container, Box, Typography } from '@mui/material';
 import loginStyles from '../styles/LoginStyles';
 import { useAuth } from '../hooks/useAuth';
 import LoginForm from '../Components/LoginForm';
@@ -36,6 +36,14 @@ const LoginPage = () => {
           isLoading={isLoading}
           error={error?.message}
         />
+        <Typography 
+          variant="body2" 
+          color="textSecondary" 
+          align="center" 
+          sx={{ mt: 2, mb: 2 }}
+        >
+          Giriş bilgileri: admin / password123
+        </Typography>
       </Box>
     </Container>
   );

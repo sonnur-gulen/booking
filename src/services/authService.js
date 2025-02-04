@@ -1,32 +1,63 @@
-import axios from 'axios';
+import api from './api';
 
-const BASE_URL = 'https://restful-booker.herokuapp.com';
+const TOKEN_KEY = 'auth_token';
+const TOKEN_EXPIRY_KEY = 'auth_token_expiry';
+const TOKEN_DURATION = 1000 * 60 * 60; 
 
-const api = axios.create({
-  baseURL: BASE_URL,
-  headers: {
-    'Content-Type': 'application/json'
-  }
-});
 
-export const login = async (credentials) => {
+let navigateFunction = null;
+
+export const setNavigate = (navigate) => {
+  navigateFunction = navigate;
+};
+
+export const login = async (credentials = {}) => {
   try {
-    const response = await api.post('/auth', credentials);
+    const response = await api.post('/auth', {
+      username: credentials.username || 'admin',
+      password: credentials.password || 'password123'
+    });
+
     if (response.data.token) {
-      localStorage.setItem('token', response.data.token);
-   //   toast.success('Login successful!');
+      localStorage.setItem(TOKEN_KEY, response.data.token);
+      localStorage.setItem(TOKEN_EXPIRY_KEY, (Date.now() + TOKEN_DURATION).toString());
+     
+      if (navigateFunction) {
+        navigateFunction('/dashboard');
+      }
+      
+      return true;
     }
-    return response.data;
+    return false;
   } catch (error) {
-    toast.error('Login failed!');
-    throw error;
+    console.error('Login hatası:', error);
+    return false;
+  }
+};
+
+export const getToken = async () => {
+  const token = localStorage.getItem(TOKEN_KEY);
+  const expiry = localStorage.getItem(TOKEN_EXPIRY_KEY);
+
+  if (token && expiry && Date.now() < parseInt(expiry)) {
+    return token;
+  }
+
+  const success = await login();
+  return success ? localStorage.getItem(TOKEN_KEY) : null;
+};
+
+export const logout = () => {
+  localStorage.removeItem(TOKEN_KEY);
+  localStorage.removeItem(TOKEN_EXPIRY_KEY);
+
+  if (navigateFunction) {
+    navigateFunction('/login');
   }
 };
 
 export const isAuthenticated = () => {
-    return !!localStorage.getItem('token');
-  };
-  
-  export const logout = () => {
-    localStorage.removeItem('token');
-  };
+  const token = localStorage.getItem(TOKEN_KEY);
+  const expiry = localStorage.getItem(TOKEN_EXPIRY_KEY);
+  return token && expiry && Date.now() < parseInt(expiry);
+};

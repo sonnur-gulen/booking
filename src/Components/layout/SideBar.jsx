@@ -46,7 +46,7 @@ const Sidebar = ({ open, onClose }) => {
       }}
     >
       
-      <List sx={{ width: 250 }}>
+      <List sx={{ width: 200, margin:1,}}>
         {menuItems.map((item) => (
           <ListItem key={item.text} disablePadding>
             <ListItemButton
@@ -54,7 +54,8 @@ const Sidebar = ({ open, onClose }) => {
               selected={location.pathname === item.path}
               sx={{
                 '&.Mui-selected': NavigationStyles.selected,
-                  '&:hover': NavigationStyles.hover
+                  '&:hover': NavigationStyles.hover,
+                  
                 
               }}
             >
